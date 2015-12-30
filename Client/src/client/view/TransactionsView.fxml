@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.TransactionsViewController">
+   <left>
+      <TreeView BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <TableView BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn maxWidth="1.7976931348623157E308" text="C1" />
+          <TableColumn maxWidth="1.7976931348623157E308" text="C2" />
+            <TableColumn maxWidth="1.7976931348623157E308" text="C3" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
