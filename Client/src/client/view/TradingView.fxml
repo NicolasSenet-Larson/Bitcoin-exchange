@@ -1,179 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxWidth="1000.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.TradingViewController">
+<BorderPane styleClass="background" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.TradingViewController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <top>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox id="trading-currencies-hbox" alignment="CENTER" spacing="10.0">
+            <GridPane fx:id="inputsGrid" alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+              </rowConstraints>
                <children>
-                  <ComboBox fx:id="currencyFrom" promptText="BTC" />
-                  <Label text="--&gt;" />
-                  <ComboBox promptText="LTC" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <GridPane id="trading-inputs-gridpane" fx:id="inputsGrid" hgap="10.0" vgap="10.0">
-                    <columnConstraints>
-                      <ColumnConstraints />
-                      <ColumnConstraints hgrow="ALWAYS" />
-                        <ColumnConstraints />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints />
-                      <RowConstraints />
-                      <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
+                  <ComboBox fx:id="sendCurrency" GridPane.columnIndex="2" />
+                  <ComboBox fx:id="receiveCurrency" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER" GridPane.columnSpan="3" GridPane.rowIndex="5">
                      <children>
-                        <AnchorPane>
-                           <children>
-                              <Label alignment="CENTER_RIGHT" text="Quantity:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.rowIndex="1">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" text="Min. Rate:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.rowIndex="2">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" text="Total Price:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" layoutX="118.0" text="0.000" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <padding>
-                                    <Insets bottom="4.0" right="20.0" top="4.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.columnIndex="2">
-                           <children>
-                              <Label text="BTC" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <Label text="LTC per BTC" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <children>
-                              <Label text="LTC" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <HBox id="trading-submit-hbox" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <Button mnemonicParsing="false" text="List Offer" />
-                           </children>
-                        </HBox>
+                        <Button fx:id="submit" minWidth="100.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
                      </children>
                      <padding>
-                        <Insets left="10.0" right="10.0" top="10.0" />
+                        <Insets top="10.0" />
                      </padding>
-                  </GridPane>
+                  </HBox>
+                  <AnchorPane>
+                     <children>
+                        <RadioButton fx:id="sendLabel" layoutX="-20.0" layoutY="4.0" mnemonicParsing="false" selected="true" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="toggleGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane GridPane.rowIndex="4">
+                     <children>
+                        <RadioButton layoutX="-20.0" layoutY="4.0" mnemonicParsing="false" text="Receive" toggleGroup="$toggleGroup" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Min. Rate" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="20.0" right="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" text="X" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Label alignment="CENTER" text="=" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
-            </HBox>
+            </GridPane>
+            <Label text="Go to &quot;My Orders&quot; to see if any of your placed orders have been matched." />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
    </top>
    <center>
-      <GridPane id="trading-lists-gridpane" hgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="20.0" vgap="10.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="ALWAYS" />
           <ColumnConstraints hgrow="ALWAYS" />
-            <ColumnConstraints hgrow="ALWAYS" />
-            <ColumnConstraints hgrow="ALWAYS" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints />
-          <RowConstraints />
-            <RowConstraints />
+          <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <AnchorPane GridPane.columnSpan="2">
+            <AnchorPane>
                <children>
-                  <Label alignment="CENTER" text="Current Buyers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </Label>
+                  <Label text="Current Buyers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="2" GridPane.columnSpan="2">
+            <AnchorPane GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" text="Current Sellers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </Label>
+                  <Label text="Current Sellers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.rowIndex="1">
-               <children>
-                  <Label text="Ordered" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER_RIGHT" text="Price per Unit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                  <Label text="Available" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER_RIGHT" text="Price per Unit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <ScrollPane fitToWidth="true" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <content>
-                  <ListView />
-               </content>
-            </ScrollPane>
-            <ScrollPane fitToWidth="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <content>
-                  <ListView />
-               </content>
-            </ScrollPane>
+            <TableView fx:id="buyers" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="ordered" sortable="false" styleClass="number-column" text="Ordered" />
+                <TableColumn fx:id="buyRate" sortable="false" styleClass="number-column" text="Price per Unit" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="sellers" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="available" sortable="false" styleClass="number-column" text="Available" />
+                <TableColumn fx:id="sellRate" sortable="false" styleClass="number-column" text="Price per Unit" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
          <padding>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
    </center>

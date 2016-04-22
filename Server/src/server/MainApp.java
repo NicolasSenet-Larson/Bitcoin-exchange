@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import server.view.RootLayoutController;
 
 public class MainApp extends Application {
 
@@ -20,8 +21,8 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		
-		primaryStage.setMinHeight(200);
-		primaryStage.setMinWidth(400);
+		primaryStage.setMinWidth(500);
+		primaryStage.setMinHeight(500);
 	}
 	
 	/**
@@ -33,7 +34,11 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
+            
+            // Give the controller access to the main application.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -42,7 +47,15 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * Gets the main stage.
+     * @return the main stage.
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+    
 	public static void main(String[] args) {
 		launch(args);
 	}

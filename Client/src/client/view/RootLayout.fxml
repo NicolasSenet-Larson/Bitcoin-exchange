@@ -6,18 +6,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="500.0" prefWidth="600.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.RootLayoutController">
+<BorderPane styleClass="background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.RootLayoutController">
    <top>
-      <HBox id="nav-hbox" alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox id="nav-hbox" alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <ToggleButton id="nav-home" fx:id="homeButton" mnemonicParsing="false" selected="true" styleClass="nav-toggle-button" text="Home">
+            <ToggleButton id="nav-exchange" fx:id="exchangeToggle" mnemonicParsing="false" styleClass="nav-toggle-button" text="Exchange">
                <toggleGroup>
                   <ToggleGroup fx:id="toggleGroup" />
-               </toggleGroup>
-            </ToggleButton>
-            <ToggleButton id="nav-exchange" fx:id="exchangeButton" mnemonicParsing="false" styleClass="nav-toggle-button" text="Exchange Currency" toggleGroup="$toggleGroup" />
-            <ToggleButton id="nav-transactions" fx:id="transactionsButton" mnemonicParsing="false" styleClass="nav-toggle-button" text="My Transactions" toggleGroup="$toggleGroup" />
-            <ToggleButton id="nav-wallets" fx:id="walletsButton" mnemonicParsing="false" styleClass="nav-toggle-button" text="My Wallets" toggleGroup="$toggleGroup" />
+               </toggleGroup></ToggleButton>
+            <ToggleButton id="nav-transactions" fx:id="transactionsToggle" mnemonicParsing="false" styleClass="nav-toggle-button" text="My Orders" toggleGroup="$toggleGroup" />
+            <ToggleButton id="nav-wallets" fx:id="walletsToggle" mnemonicParsing="false" styleClass="nav-toggle-button" text="My Wallets" toggleGroup="$toggleGroup" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

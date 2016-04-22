@@ -1,0 +1,76 @@
+/* root layout */
+
+.root{
+}
+
+.background {
+}
+
+#nav-hbox {
+	TOP-COLOR: ladder(
+        -fx-base,
+        derive(-fx-base,0%) 0%,
+        derive(-fx-base,46%) 100%
+    );
+	-fx-background-color:
+        linear-gradient(to bottom, derive(TOP-COLOR,25%) 0%, -fx-outer-border 90%),
+        linear-gradient(to bottom, TOP-COLOR 2%, derive(-fx-base,-2.1%) 95%);
+    -fx-background-insets: 0 0 0 0, 1 0 1 0;
+    -fx-padding: 10;
+    -fx-spacing: 0;
+}
+
+.toggle-button {
+	-fx-background-radius: 0;
+}
+
+/* trading view */
+
+#inputsGrid {
+	-fx-hgap: 0;
+	-fx-vgap: 0;
+}
+
+.text-field {
+    -fx-background-radius: 0;
+}
+
+.combo-box {
+    -fx-background-radius: 0;
+}
+
+.button {
+    -fx-background-radius: 0;
+}
+
+.table-column {
+	-fx-alignment: center;
+}
+
+.number-column {
+	-fx-padding: 0 10 0 10;
+	-fx-alignment: center-right;
+}
+
+/* transactions view */
+
+.no-selection-table .table-row-cell:filled:selected {
+  -fx-background: -fx-control-inner-background ;
+  -fx-background-color: -fx-table-cell-border-color, -fx-background ;
+  -fx-background-insets: 0, 0 0 1 0 ;
+  -fx-table-cell-border-color: derive(-fx-color, 5%);
+}
+
+.no-selection-table .table-row-cell:odd:filled:selected {
+  -fx-background: -fx-control-inner-background-alt ;
+}
+
+.status-column {
+	-fx-padding: 0;
+}
+
+/* wallets view */
+
+.wallet {
+	-fx-max-width: 800;
+}

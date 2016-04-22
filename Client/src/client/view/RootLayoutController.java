@@ -1,31 +1,21 @@
 package client.view;
 
-import java.io.IOException;
-
 import client.MainApp;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.BorderPane;
 
 public class RootLayoutController {
-    // Reference to the main application.
-    private MainApp mainApp;
     @FXML
-    ToggleGroup toggleGroup; // Navigation bar toggle group.
+    private ToggleGroup toggleGroup; // Navigation bar toggle group.
     @FXML
-    private ToggleButton homeButton; // Home toggle button.
+    private ToggleButton exchangeToggle; // Exchange Currency toggle button.
     @FXML
-    private ToggleButton exchangeButton; // Exchange Currency toggle button.
+    private ToggleButton transactionsToggle; // My Transactions toggle button.
     @FXML
-    private ToggleButton transactionsButton; // My Transactions toggle button.
-    @FXML
-    private ToggleButton walletsButton; // My Wallets toggle button.
+    private ToggleButton walletsToggle; // My Wallets toggle button.
+    
+    private MainApp mainApp; // Reference to the main application.
     
 	/**
      * The constructor.
@@ -41,52 +31,19 @@ public class RootLayoutController {
     @FXML
     private void initialize() {
     	// Set toggle buttons user data.
-    	homeButton.setUserData("Home");
-    	exchangeButton.setUserData("Trading");
-    	transactionsButton.setUserData("Transactions");
-    	walletsButton.setUserData("Wallets");
+    	exchangeToggle.setUserData("Trading");
+    	transactionsToggle.setUserData("Transactions");
+    	walletsToggle.setUserData("Wallets");
     	
     	// Add change listener to toggle group.
-    	toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-			@Override
-			public void changed(ObservableValue<? extends Toggle> ov, Toggle toggle, Toggle new_toggle) {
-				if (toggleGroup.getSelectedToggle() != null) {
-					String userData = toggleGroup.getSelectedToggle().getUserData().toString();
-					
-					try {
-	    		    	// Load view from fxml file.
-	    		        FXMLLoader loader = new FXMLLoader();
-	    		        loader.setLocation(MainApp.class.getResource("view/" + userData + "View.fxml"));
-	    		        Node view = loader.load();
-
-	    		        // Set view into the center of root layout.
-	    		        BorderPane rootLayout = (BorderPane) mainApp.getPrimaryStage().getScene().getRoot();
-	    		        rootLayout.setCenter(view);
-	    		        
-	    		        // Give the controller access to the main app.
-	    		        switch (userData) {
-	    		        	case "Home":
-	    		        		HomeViewController homeController = loader.getController();
-	        		        	homeController.setMainApp(mainApp);
-		    		        	break;
-	    		        	case "Trading":
-		    		        	TradingViewController tradingController = loader.getController();
-		    		        	tradingController.setMainApp(mainApp);
-		    		        	break;
-	    		        	case "Transactions":
-		    		        	TransactionsViewController transactionsController = loader.getController();
-		    		        	transactionsController.setMainApp(mainApp);
-		    		        	break;
-	    		        	case "Wallets":
-		    		        	WalletsViewController walletsController = loader.getController();
-		    		        	walletsController.setMainApp(mainApp);
-		    		        	break;
-	    		        }
-	    	    	} catch (IOException e) {
-	    	            e.printStackTrace();
-	    	        }
-				}
-			}
+    	toggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+			if (newToggle != null)
+				if (newToggle == exchangeToggle && MainApp.properties.keySet().size() < 2)
+					toggleGroup.selectToggle(walletsToggle); // If not enough saved wallets, go to wallets.
+				else
+					mainApp.showPage(newToggle.getUserData().toString()); // Show toggled page.
+			else
+				toggleGroup.selectToggle(oldToggle); // Always keep toggled.
     	});
     }
     
@@ -96,5 +53,11 @@ public class RootLayoutController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        
+        // If enough wallets are saved, go to exchange, otherwise go to wallets.
+        if (MainApp.properties.keySet().size() >= 2)
+ 			toggleGroup.selectToggle(exchangeToggle);
+ 		else
+ 			toggleGroup.selectToggle(walletsToggle);
     }
 }

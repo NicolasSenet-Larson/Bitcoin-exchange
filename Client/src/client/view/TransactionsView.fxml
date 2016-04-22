@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.TransactionsViewController">
-   <left>
-      <TreeView BorderPane.alignment="CENTER" />
-   </left>
+<BorderPane styleClass="background" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.TransactionsViewController">
    <center>
-      <TableView BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn maxWidth="1.7976931348623157E308" text="C1" />
-          <TableColumn maxWidth="1.7976931348623157E308" text="C2" />
-            <TableColumn maxWidth="1.7976931348623157E308" text="C3" />
-        </columns>
-      </TableView>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Label text="Currently Placed Orders" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <TableView fx:id="placed" styleClass="no-selection-table">
+              <columns>
+                <TableColumn fx:id="fromCurrency" text="From" />
+                  <TableColumn fx:id="fromAmount" styleClass="number-column" text="Amount" />
+                  <TableColumn fx:id="toCurrency" text="To" />
+                  <TableColumn fx:id="minRate" styleClass="number-column" text="Min. Rate" />
+                  <TableColumn fx:id="toAmount" styleClass="number-column" text="Min. Amount" />
+                  <TableColumn fx:id="cancel" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" styleClass="status-column" text="Cancel" />
+                  <TableColumn fx:id="orderDate" text="Date" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <AnchorPane>
+               <children>
+                  <Label text="Matched Orders" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding></Label>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="matched" styleClass="no-selection-table">
+               <columns>
+                  <TableColumn fx:id="sendCurrency" text="Send" />
+                  <TableColumn fx:id="sendAmount" styleClass="number-column" text="Amount" />
+                  <TableColumn fx:id="sendStatus" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" styleClass="status-column" text="Status" />
+                  <TableColumn fx:id="receiveCurrency" text="Receive" />
+                  <TableColumn fx:id="receiveAmount" styleClass="number-column" text="Amount" />
+                  <TableColumn fx:id="receiveStatus" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" styleClass="status-column" text="Status" />
+                  <TableColumn fx:id="rate" styleClass="number-column" text="Rate" />
+                  <TableColumn fx:id="matchDate" text="Date" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
    </center>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </BorderPane>
