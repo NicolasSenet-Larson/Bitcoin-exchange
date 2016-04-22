@@ -168,6 +168,8 @@ public class TransactionsViewController {
 				// HBox with accept/cancel buttons and status label for the 'Status' column.
 				HBox statusBox = new HBox();
 				Label statusLabel = new Label();
+				statusLabel.setPrefWidth(60);
+				statusLabel.setAlignment(Pos.CENTER);
 				Button acceptButton = new Button("Accept");
 				acceptButton.setPrefWidth(60);
 				Button cancelButton = new Button("Cancel");
