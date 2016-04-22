@@ -9,9 +9,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 
 /**
- * Textfield implementation that accepts formatted number and stores them in a BigDecimal property.
- * The user input is formatted when the focus is lost or the user hits RETURN.
- *
+ * {@link TextField} implementation that accepts formatted number and stores them in a {@link BigDecimal} property.
+ * The user input is formatted when the focus is lost or the user hits the Return key.
  * @author Nicolas Senet-Larson
  */
 public class NumberField extends TextField {

@@ -34,11 +34,11 @@
                   <ComboBox fx:id="receiveCurrency" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER" GridPane.columnSpan="3" GridPane.rowIndex="5">
                      <children>
-                        <Button fx:id="submit" minWidth="100.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+                        <Button fx:id="submit" mnemonicParsing="false" onAction="#placeOrder" prefWidth="100.0" text="Place Order" />
+                        <Button mnemonicParsing="false" onAction="#clear" prefWidth="100.0" text="Clear" />
                      </children>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets top="20.0" />
                      </padding>
                   </HBox>
                   <AnchorPane>

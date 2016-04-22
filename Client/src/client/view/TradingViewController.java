@@ -28,6 +28,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
+/**
+ * The exchange page is where the user can place orders, and see current buyers and sellers for a chosen currency pair.
+ * @author Nicolas Senet-Larson;
+ */
 public class TradingViewController {
 	@FXML
 	private GridPane inputsGrid;
@@ -112,9 +116,9 @@ public class TradingViewController {
     	/** Initialise input fields */
     	
     	// Initialise and add NumberFields to the inputs GridPane.
-    	send.setPrefWidth(200);
-    	rate.setPrefWidth(200);
-    	receive.setPrefWidth(200);
+    	send.setPrefWidth(250);
+    	rate.setPrefWidth(250);
+    	receive.setPrefWidth(250);
     	receive.setDisable(true);
     	inputsGrid.getChildren().add(0, send);
     	inputsGrid.getChildren().add(2, rate);

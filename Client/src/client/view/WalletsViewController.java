@@ -21,6 +21,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+/**
+ * The wallets page is used to save/remove wallet information needed to send RPC commands to the wallets.
+ * @author Nicolas Senet-Larson
+ */
 public class WalletsViewController {
 	@FXML
 	private VBox wallets;

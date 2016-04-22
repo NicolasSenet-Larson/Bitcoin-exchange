@@ -1,4 +1,4 @@
-7CCS4PRJ: MSci Individual Project, 2015
+7CCS4PRJ: MSci Individual Project, 2015-2016
 
 Supervisor: Dr Steve Phelps
 

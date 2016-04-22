@@ -24,6 +24,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 
+/**
+ * The orders page shows the user's currently placed and matched orders.
+ * The user can cancel placed orders and accept/cancel matched orders.
+ * Accepted orders are sent by RPC wallet command from this page.
+ * @author Nicolas Senet-Larson
+ */
 public class TransactionsViewController {
 	@FXML
     private TableView<Order> placed;

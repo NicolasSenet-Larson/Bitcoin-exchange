@@ -5,6 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
+/**
+ * This class controls the navigation bar at the top of the application, to navigate between pages.
+ * @author Nicolas Senet-Larson
+ */
 public class RootLayoutController {
     @FXML
     private ToggleGroup toggleGroup; // Navigation bar toggle group.
