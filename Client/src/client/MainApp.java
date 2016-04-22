@@ -175,7 +175,6 @@ public class MainApp extends Application {
 						continue;
 					} else {
 						// Display error if there is one.
-						System.out.println("Error!");
 						new Alert(Alert.AlertType.NONE, dir.substring(dir.lastIndexOf('\\') + 1) + " Wallet: " + error.toString(), ButtonType.CLOSE).show();
 						// Close any loading message.
 						if (loading != null)

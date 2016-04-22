@@ -88,7 +88,7 @@ public class WalletsViewController {
     			try {
     				//Generate trading address for that wallet.
     				String address = MainApp.rpc(qt.getParent(), loading, "-regtest getnewaddress")[0];
-        			if (address != null) {
+        			if (address != null && !address.equals("")) {
 	        			// Write new properties.
 	        			MainApp.properties.setProperty(qt.getParentFile().getName(), qt.getParent()+ ", " + address); // Set the properties value.
 	        			MainApp.properties.store(new FileOutputStream("config.properties"), null); // Save properties.
