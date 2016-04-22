@@ -203,7 +203,7 @@ public class TransactionsViewController {
 					statusBox.getChildren().addAll(acceptButton, cancelButton);
 				
 				// If I accepted and other has accepted/already sent, execute transaction.
-				else if (rs.getString("Status" + user[0]).equals("Accepted") && "Accepted Sent".contains(rs.getString("Status" + user[1]))) {
+				else if (rs.getString("Status" + user[0]).equals("Accepted") && rs.getString("Status" + user[1]) != null && !rs.getString("Status" + user[1]).equals("Cancelled")) {
 					
 					Alert loading = new Alert(Alert.AlertType.NONE, "Sending " + rs.getString("Currency" + user[0]) + "...", ButtonType.CLOSE); // Loading message.
 	        		loading.show();
@@ -219,7 +219,7 @@ public class TransactionsViewController {
 					
 				// If only I accepted, still show cancel button.
 				} else if(rs.getString("Status" + user[0]).equals("Accepted")) {
-					statusLabel.setText(rs.getString("Accepted"));
+					statusLabel.setText("Accepted");
 					statusBox.getChildren().addAll(statusLabel, cancelButton);
 					
 				// If cancelled, show cancelled status.
